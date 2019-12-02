@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alper Kum 2019280041</title>
+<body>
+<p id="odev2"></p>
+<h2>Alper Kum 2019280041</h2>
+<h3>Onluktan Romene</h3>
+<Label for="id1">Girdiğiniz Onluk Sayı:</label>
+<input type="text" id='id1' />
+<br>
+<button type="button" onclick="decimalToRoman()">Romen'e Çevir</button>
+<a href="https://www.tutorialspoint.com/How-to-convert-a-decimal-number-to-roman-using-JavaScript">Kaynak</a>
+</hr>
+<h3>Romenden Onluğa</h3>
+<Label for="id2">Girdiğiniz Romen Sayı:</label>
+<input type="text" id='id2' />
+<br>
+<button type="button" onclick="romanToDecimal()">Onlukğa Çevir</button>
+<a href="https://www.geeksforgeeks.org/converting-roman-numerals-decimal-lying-1-3999/">Kaynak</a>
+<script>
+function decimalToRoman() {
+var romanNum = new Array();
+         romanNum = ["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"];
+         var deciNum = new Array();
+         deciNum = [1000,900,500,400,100,90,50,40,10,9,5,4,1];
+var deger1 = Number(document.getElementById("id1").value);
+            if (deger1 <= 0 || deger1 >= 4000)
+               return deger1;
+               var romanNumeral = "";
+            for (var i = 0; i<romanNum.length; i++) {
+               while (deger1 >= deciNum[i]) {
+                  deger1 -= deciNum[i];
+                  romanNumeral += romanNum[i];
+               }
+            }
+alert('Girdiğiniz onluk sayının Romen yazımı: ' + romanNumeral);
+}
+function romanToDecimal() {
+var deger2 = document.getElementById("id2").value;
+var total = 0;
+var queue = 0;
+	while (deger2.length > 0) {
+		strNextVal = deger2.substring(0,1);
+		deger2 = deger2.substring(1);
+		switch(strNextVal){
+			case "M" : intNextVal = 1000; break;
+			case "D" : intNextVal = 500; break;
+			case "C" : intNextVal = 100; break;
+			case "L" : intNextVal = 50; break;
+			case "X" : intNextVal = 10; break;
+			case "V" : intNextVal = 5; break;
+			case "I" : intNextVal = 1; break;
+			default : alert("Invalid character : " + strNextVal); break;
+			}
+		if (queue)
+		{
+			if (intNextVal <= queue)
+			{
+				total += queue;
+				queue = intNextVal;
+			}
+			else
+			{
+				total += intNextVal - queue;
+				queue = 0;
+			}
+		}
+		else
+		{
+			queue = intNextVal;
+		}
+	}
+total += queue;
+alert('Girdiğiniz Romen sayının onluk yazımı: ' + total);
+}
+</script>
+</body>
+</html>
